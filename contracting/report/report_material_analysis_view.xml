@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_material_analysis_filter" model="ir.ui.view">
+         <field name="name">Material Analysis</field>
+         <field name="model">report.material.analysis.view</field>
+            <field name="arch" type="xml">
+                <search string="Material Analysis">
+                    <field name="analytic_id"/>
+
+                    <filter string="Project" domain="[]" context="{'group_by':'analytic_id'}"/>
+                    <filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+
+
+                </search>
+            </field>
+        </record>
+
+    <record id="view_report_material_analysis_graph" model="ir.ui.view">
+         <field name="name">Material Analysis</field>
+         <field name="model">report.material.analysis.view</field>
+         <field name="arch" type="xml">
+             <graph string="material" type="pivot" stacked="True">
+                 <field name="analytic_id" />
+                <field name="qty" type="measure"/>
+                <field name="cost" type="measure"/>
+            
+             </graph>
+         </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="action_report_material_analysis_graph">
+         <field name="name">Material Analysis</field>
+            <field name="res_model">report.material.analysis.view</field>
+            <field name="view_mode">graph</field>
+        </record>
+
+    </data>
+</openerp>

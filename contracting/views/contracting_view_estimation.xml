@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record id="contracting_estimation_filter" model="ir.ui.view">
+            <field name="name">Contracting</field>
+            <field name="model">contracting.estimation</field>
+            <field name="arch" type="xml">
+                <search string="Contracting">
+                            <field name="enq_no"/>  
+                            <field name="customer_id"/>  
+                            <field name="estimator_id"/>
+                            <field name="reviewer_id"/>
+                            <field name="currency_id"/>
+                            <field name="job_type_id" /> 
+                 <filter string="Job Type" domain="[]" context="{'group_by':'job_type_id'}"/>
+                 <filter string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+                 <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                </search>
+            </field>
+        </record>
+
+<!--contracting.estimation tree-->
+        <record id="contracting_estimation_tree" model="ir.ui.view">
+            <field name="name">Contracting Tree</field>
+            <field name="model">contracting.estimation</field>
+            <field name="arch" type="xml">
+                <tree string="Contracting" version="7.0">
+                    <field name="name"/>
+                    <field name="customer_id"/>  
+                    <field name="currency_id"/>
+                    <field name="job_type_id"/> 
+                    <field name="state" invisible="1"/>
+
+                </tree>
+           </field>
+        </record>
+
+<!--<contracting.estimation form>-->
+        <record id="contracting_estimation_form" model="ir.ui.view">
+            <field name="name">Contracting</field>
+            <field name="model">contracting.estimation</field>
+            <field name="arch" type="xml">
+                <form string="Contracting" version="7.0">
+<!--                    <sheet>-->
+                    <header>
+                        <button name="button_done" string="Done" states="draft,quotation" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done" statusbar_colors='{"cancel":"red","quotation":"blue"}'/>
+<!--                        <button name="create_so" string="Create Quotation" type="object"/>-->
+                    </header>
+                    <h1>
+                        <field name="name" class="oe_inline" readonly="1" attrs="{'invisible': [('name','=','/')]}"/>
+                    </h1>
+
+                    <group>
+                        <group>
+                          
+<!--                            <label for="name"/>-->
+
+                            <field name="enq_no" on_change="onchange_enq_no(enq_no)"/>  
+                            <field name="customer_id" domain="[('customer','=',True)]" context="{'default_customer':True}"/>  
+                            <field name="estimator_id"/>
+                            <field name="reviewer_id"/>
+                            <field name="currency_id"/>
+                            <field name="job_type_id" /> 
+<!--                            <field name="revision_no"/>-->
+                            <field name="ref"/>
+<!--                          <field name="description"/>-->
+                            <field name="total_cost"/>
+                            <field name="total_margin"/>
+                            <field name="total_estimation"/>
+                        </group>
+                     <group>
+                            <field name="date"/>  
+                            <field name="submission_date"/> 
+                        <label for="start_date" string="Duration"/>
+                        <div>
+                            <field name="start_date" class="oe_inline"/> - <field name="end_date" class="oe_inline"/>
+                        </div>
+                        <label for="street" string="Address"/>
+                        <div>
+                            <field name="area" placeholder="Area"/>
+                            <field name="address" placeholder="Address"/>
+                            <field name="city" placeholder="City"/>
+                             <field name="state_id" placeholder="State" on_change="onchange_state(state_id)"/>
+                            <field name="country_id" placeholder="Country"/>
+                        </div>
+                        <field name="distance"/>
+
+                    </group>                    
+                  </group>
+<!--            <notebook colspan="4">-->
+<!--                <page string="Material">-->
+            <group string="Materials">
+                    <field name="material_line" nolabel="1" >
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+<!--                            <field name="product_id" on_change="onchange_product_id(product_id)" context="{'cost_code' : True}"/>-->
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+
+                            <field name="name"/>
+
+                             <field name="partner_id"/>
+
+<!--                             domain="[('product_id','=',product_id)]"-->
+<!--                            <field name="est_details"/>-->
+                            <field name="product_id" on_change="onchange_product_id(product_id)"/>
+                            <field name="bom_id" domain="[('product_tmpl_id','=',product_id)]" />
+
+                                <field name="remarks"/>
+                            <field name="qty" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="unit_id"/>
+                            <field name="rate" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="amount" sum="Amount"/>
+                            <field name="margin" on_change="onchange_margin_percentage(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="margin_amt" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)" sum="Margin Amount"/>
+                            <field name="est_amount" sum="Estimation"/>
+                        </tree>
+                    </field>
+            </group>
+<!--                </page>-->
+<!--                <page string="Labour">-->
+            <group string="Labour">
+                   <field name="labour_line" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+<!--                            <field name="product_id" on_change="onchange_product_id(product_id)" context="{'cost_code' : True}"/>-->
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+
+                            <field name="name"/>
+                             <field name="partner_id"/>
+<!--                            <field name="est_details"/>-->
+<!--                            <field name="bom_id" context="{'default_product_id':product_id}"-->
+<!--on_change="onchange_bom_id(bom_id)"/>-->
+<!--domain="[('product_id','=',product_id)]"-->
+                            <field name="timesheet_product_id"/>
+
+                             <field name="remarks"/>
+                            <field name="qty" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="unit_id"/>
+                            <field name="rate" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="amount" sum="Amount"/>
+                            <field name="margin" on_change="onchange_margin_percentage(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="margin_amt" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)" sum="Margin Amount"/>
+                            <field name="est_amount" sum="Estimation"/>
+                        </tree>
+                    </field>
+            </group>
+<!--                </page>-->
+<!--                <page string="Sub Contract">-->
+            <group string="Sub Contract">
+                   <field name="sub_cont_line" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+<!--                            <field name="product_id" on_change="onchange_product_id(product_id)" context="{'cost_code' : True}"/>-->
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+
+                            <field name="name"/>
+                              <field name="partner_id"/>
+<!--                            <field name="est_details"/>-->
+<!--domain="[('product_id','=',product_id)]"-->
+<!--                            <field name="bom_id" context="{'default_product_id':product_id}"/>-->
+
+                             <field name="remarks"/>
+                            <field name="qty" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="unit_id"/>
+                            <field name="rate" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="amount" sum="Amount"/>
+                            <field name="margin" on_change="onchange_margin_percentage(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="margin_amt" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)" sum="Margin Amount"/>
+                            <field name="est_amount" sum="Estimation"/>
+                        </tree>
+                    </field>
+            </group>
+<!--                </page>-->
+<!--                <page string="Tools and Equipments">-->
+            <group string="Tools and Equipments">
+                   <field name="eqp_line" nolabel="1" >
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+<!--                            <field name="product_id" on_change="onchange_product_id(product_id)" context="{'cost_code' : True}"/>-->
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+
+                            <field name="name"/>
+                             <field name="partner_id"/>
+<!--                            <field name="est_details"/>-->
+<!--domain="[('product_id','=',product_id)]"-->
+<!--                            <field name="bom_id"  context="{'default_product_id':product_id}"/>-->
+
+                            <field name="remarks"/>
+                            <field name="qty" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="unit_id"/>
+                            <field name="rate" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="amount" sum="Amount"/>
+                            <field name="margin" on_change="onchange_margin_percentage(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="margin_amt" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)" sum="Margin Amount"/>
+                            <field name="est_amount" sum="Estimation"/>
+                        </tree>
+                    </field>
+            </group>
+<!--                </page>-->
+<!--                <page string="Logistics and Transportation">-->
+            <group string="Logistics and Transportation">
+                   <field name="log_line" nolabel="1" >
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+<!--                            <field name="product_id" on_change="onchange_product_id(product_id)" context="{'cost_code' : True}"/>-->
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+
+                            <field name="name"/>
+                              <field name="partner_id"/>
+<!--                            <field name="est_details"/>-->
+<!--                            <field name="bom_id"  context="{'default_product_id':product_id}"/>-->
+<!--domain="[('product_id','=',product_id)]"-->
+
+                              <field name="remarks"/>
+                            <field name="qty" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="unit_id"/>
+                            <field name="rate" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="amount" sum="Amount"/>
+                            <field name="margin" on_change="onchange_margin_percentage(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="margin_amt" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)" sum="Margin Amount"/>
+                            <field name="est_amount" sum="Estimation"/>
+
+                        </tree>
+                    </field>
+            </group>
+<!--                </page>-->
+<!--                <page string="Misc">-->
+            <group string="Misc">
+                   <field name="mis_line" nolabel="1" >
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+<!--                            <field name="product_id" on_change="onchange_product_id(product_id)" context="{'cost_code' : True}"/>-->
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+
+                            <field name="name"/>
+                               <field name="partner_id"/>
+<!--                            <field name="est_details"/>-->
+<!--                            <field name="bom_id"  context="{'default_product_id':product_id}"/>-->
+<!--domain="[('product_id','=',product_id)]"-->
+
+                            <field name="remarks"/>
+                            <field name="qty" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="unit_id"/>
+                            <field name="rate" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="amount" sum="Amount"/>
+                            <field name="margin" on_change="onchange_margin_percentage(qty, rate, amount, margin,margin_amt,est_amount)"/>
+                            <field name="margin_amt" on_change="onchange_qty_rate_margin(qty, rate, amount, margin,margin_amt,est_amount)" sum="Margin Amount"/>
+                            <field name="est_amount" sum="Estimation"/>
+
+                        </tree>
+                    </field>
+            </group>
+<!--                </page>-->
+<!--            </notebook>-->
+                <div class="oe_clear"/>
+                            <field name="description" class="oe_inline" placeholder="Description....."/>
+<!--                </sheet>-->
+                </form>
+           </field>
+        </record>
+
+
+
+<!--action contracting.estimation-->
+        <record id="contracting_estimation_action" model="ir.actions.act_window">
+            <field name="name">Contracting</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracting.estimation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Record.
+              </p>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

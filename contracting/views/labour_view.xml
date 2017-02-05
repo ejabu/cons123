@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="hr_contracting_contract_form" model="ir.ui.view">
+            <field name="name">hr.contract.view.orchid.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="after">
+                    <field name="active"/>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="view_labour_filter" model="ir.ui.view">
+            <field name="name">Labour</field>
+            <field name="model">labour.line</field>
+            <field name="arch" type="xml">
+                <search string="Labour">
+	                       		<field name='partner_id' />
+	                       		<field name='project_id' />
+	
+   
+                    <filter string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                    <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                    <filter string="Journal Entry" domain="[]" context="{'group_by':'move_id'}"/>
+
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="od_labour_form">
+            <field name="name">Labour Cost Form view</field>
+            <field name="model">labour</field>
+            <field name="arch" type="xml">
+                <form string="Labour Cost" version="7.0">
+                <header>
+                 <field name="state" widget='statusbar'  />
+                <button name='create_move' string="Validate" states="draft" type="object" class="oe_highlight" />
+                </header>
+                    <sheet>
+                        <div class="oe_title oe_left">
+                            <h1>
+                                <field name="name" placeholder="Title" />
+                            </h1>
+                        </div>
+                        <group>
+                        <group>
+                            <field name="date" />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                             <field name="move" />
+                            <field name="journal_id" invisible="1"/>
+                             <field name="actual" />
+                        </group>
+                        <group>
+                        	<field name="journal_id" />
+                        	<field name="wip_account_id" />
+                        	
+                        	<field name="expense_account_id" />
+                        	
+                        	<field name="working_hour" />
+                        </group>
+                        
+                       <group>
+                       
+                        
+                       </group>
+                      
+                        
+                        </group>
+                        <notebook>
+                        	<page string="Labour Cost">
+                        	<button name='get_timesheet' string='Generate' states="draft" class="oe_highlight" type="object" />
+                        	<field name='labour_line'>
+                      		 <tree editable='bottom'>
+	                       		
+	                       		<field name='partner_id' />
+	                       		<field name='project_id' />
+	                       		<field name='duration' sum="Duration" />
+	                       		<field name='amount' sum="Amount"/>
+	                       		<field name='actual_amount' sum="Actual Amount" />
+                       		</tree>
+                       </field>
+                        	</page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="od_labour_tree">
+            <field name="name">Labour Cost tree view</field>
+            <field name="model">labour</field>
+            <field name="arch" type="xml">
+                <tree string="Labour Cost">
+                    <field name="name" />
+                    <field name="date" />
+                  <field name="state" />
+                </tree>
+            </field>
+        </record>
+       
+    <record id="view_od_labour_graph" model="ir.ui.view">
+         <field name="name">labour.graph</field>
+         <field name="model">labour</field>
+         <field name="arch" type="xml">
+             <graph string="Labour Cost" type="pivot" stacked="True">
+                 <field name="name" />
+                 
+             
+             </graph>
+         </field>
+    </record>
+        <record model="ir.actions.act_window" id="action_labour_cost">
+            <field name="name">Labour Cost</field>
+            <field name="res_model">labour</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+         
+
+    <record id="view_man_power_graph" model="ir.ui.view">
+            <field name="name">Man Power Analaysis</field>
+         <field name="model">labour.line</field>
+         <field name="arch" type="xml">
+             <graph string="Man Power" type="pivot" stacked="True">
+                    <field name='project_id' />
+
+               		<field name='duration' type="measure"/>
+               		<field name='actual_amount' type="measure"/>
+                    <field name="amount" type="measure"/>
+
+             </graph>
+         </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="action_man_power_graph">
+            <field name="name">Man Power Analaysis</field>
+            <field name="res_model">labour.line</field>
+            <field name="view_mode">graph</field>
+        </record>
+
+<!--        <menuitem name="Labour Cost" id="menu_labour_cost" parent="orchid_wip.menu_wip_project"-->
+<!--            action="action_labour_cost" />-->
+
+    </data>
+</openerp>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+    <record id="contracting_budget_line_tree" model="ir.ui.view">
+        <field eval="1" name="priority"/>
+        <field name="name">contracting.budget.line.tree</field>
+        <field name="model">contracting.budget.line</field>
+        <field name="arch" type="xml">
+            <tree string="Bill of Quantity" create="false">
+                <field name="product_id" string="Costcode"/>
+                <field name="bom_id"/>
+                <field name="unit_id"/>
+                <field name="qty" />
+
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="contracting_budget_line_search" model="ir.ui.view">
+        <field name="name">contracting.budget.line.search</field>
+        <field name="model">contracting.budget.line</field>
+        <field name="arch" type="xml">
+            <search string="Bill of Quantity" >
+            <field name="product_id" string="Costcode" filter_domain="[('product_id','ilike',self)]"/>
+            <field name="bom_id" string="BOQ" filter_domain="[('boq_id','ilike',self)]"/>
+
+            <group expand="1" string="Group By...">
+
+
+                    <filter string="Costcode" icon="terp-partner"  name="product" context="{'group_by':'product_id'}"/>
+                    <filter string="BOQ" icon="terp-partner"  name="partner" context="{'group_by':'bom_id'}"/>
+
+            </group>
+
+
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_contracting_budget_line" model="ir.actions.act_window">
+        <field name="name">Bill of Quantity</field>
+        <field name="res_model">contracting.budget.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="contracting_budget_line_search"/>
+        <field name="view_id" ref="contracting_budget_line_tree"/>
+        <field name="context">{}</field>
+        <field name="help">Bill of Quantity.</field>
+    </record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <record id="create_quotation_from_estimation_wizard_form_view" model="ir.ui.view">
+            <field name="name">Create Quotation</field>
+            <field name="model">create.quotation.from.estimation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create Quotation" create="false" edit="false">
+                  <sheet>
+<!--                    <button name="add_button" string="Add" type="object" class="oe_highlight"/>-->
+                        <group>
+                            <group>
+                                  
+                                  
+                                  <field name="partner_id"/>
+                            </group>
+
+                        </group>
+
+                        <field name="estimation_wizard_line" unlink="false">
+                            <tree editable="top" create="false" edit="false" delete="false">
+
+
+
+                                <field name="name"/>
+                                 <field name="product_id"/>
+                                <field name="qty"/>
+                                <field name="product_uom"/>
+                                <field name="unit_price"/>
+                                <field name="purchase_price"/>
+                          </tree>
+                        </field>
+
+
+
+                <footer>
+                    <button name="create_so" string="Create Quotation" type="object"
+                       class="oe_highlight"/>
+                </footer>
+
+                  </sheet>
+                </form>
+            </field>
+       </record>
+
+
+        <record id="action_create_quotation_from_estimation_wizard" model="ir.actions.act_window">
+            <field name="name">Create Quotation(SO)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">create.quotation.from.estimation.wizard</field>
+            <field name="view_id" ref="create_quotation_from_estimation_wizard_form_view"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'form_view_ref': False}</field>
+        </record>
+
+
+        <record model="ir.values" id="action_create_qtation_wizard">
+            <field name="model_id" ref="contracting.model_contracting_estimation" />
+            <field name="name">Create Quotation(SO)</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' +str(ref('action_create_quotation_from_estimation_wizard'))" />
+            <field name="key">action</field>
+            <field name="model">contracting.estimation</field>
+        </record>
+
+
+
+    </data>
+</openerp>
+

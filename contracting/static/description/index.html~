@@ -1,0 +1,177 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span8">
+            <h2 class="oe_slogan">Job Costing - Contracting</h2>
+            <h3 class="oe_slogan">
+            Enquiry, Estimation, Material Issue, WIP, Labour Cost, Job Closing, Revenue & Cost Booking
+            </h3>
+
+      </div>
+
+        <div class="oe_span4">
+
+            <div class="oe_centeralign oe_websiteonly">
+                <a href="https://youtu.be/HXfepdfehrI" class="oe_button oe_big oe_tacky">Watch <span class="oe_emph">Tutorial</span></a>
+            </div>
+
+        </div>
+   </div>
+
+
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Configurations</h2>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+            <li>Create Job Type</li>
+            <li>Create Cost Code</li>
+            <li>Create Stages for Tender</li>
+            <li>Accounts - CoA</li>
+            <li>WIP Account  - Type Asset</li>
+            <li>Job Labour Cost Account - Type Provision</li>
+            <li>Advance / Un Recognized Income A/c - Type Provision</li>
+            <li>Project Revenue - Type Income</li>
+            <li>Project Expenses - Type Expenses</li>
+            <li>Raw Material</li>
+            <li>Product Master > Product Type = Stockable</li>
+            <li>Set Stock out account as WIP Account</li>
+            </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="odoo_contracting.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Labour Cost Booking</h2>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture" src="odoo_labour_cost.png">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+
+            <li>	Create Employees 	</li>
+            <li>Link User and Home address in Employee Master	</li>
+            <li>Employee Time Sheet Product 	</li>
+            <li>Product Master > Product Type = Service 	</li>
+            <li>Set the product cost (overhead rate) and selling price (for estimation)	</li>
+            <li>Set Job Labour Cost Account as revenue and expense account 	</li>
+            <li>Labour Cost to WIP [ Contracting > Job Costing > Labaour Cost ]	</li>
+            <li>Total hours spent for the project from hr timesheet activities	</li>
+            <li>Calculating overhead rate from the service product cost linked in employee master multiplied by the hours worked in each project.	</li>
+            <li>Actual Amount is calculated from gross salary of the employee divided by total working hours for the month  multiplied by the hours worked in each project.	</li>
+            <li>In Validation WIP Account will be Debited and Provision account (Job Labour Cost Account) will be credited	</li>
+            <li>If Actual rate is ticked Actual amount is posted otherwise overhead amount is posted in journal entries	</li>
+
+
+
+
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Material Issue</h2>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+<li>	Create Type Of Operation in Warehouse Material Issue</li>
+<li>	Source - WH/Stock	</li>
+<li>	Destination - Partners Location/Customers	</li>
+<li>	Create Stock Move - All operation > Material Issue	</li>
+<li>	Select the Project /Analytic in stock Picking	</li>
+<li>	Journal Entries - Account Move	</li>
+<li>	Inventory will be Credited with Analytic Account	</li>
+<li>	WIP Account will be Debited with Analytic Account	</li>
+
+            </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Asset Usage in Project</h2>
+
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+<li>Create Assets</li>
+<li>Create Asset Usage (Define Debit & Credit Accounts)</li>
+<li>Enter Asset Timesheet with usage and Project details</li>
+<li>Post Timesheet to Projects</li>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Direct Project Expenses </h2>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+            Journal Entries
+            </p><p>
+    <li>In Journal Entries Using WIP account with Analytic account cost can be booked to projects</li>
+            </p><p>
+<li>Through Supplier Invoice Using WIP sub contractor and other direct expenses can be booked</li>    </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Project Invoice & Closing</h2>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="odoo_wip.png">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+Using Customer invoice with analytic account Receivable can be booked and Advance / Un Recognised Income A/c will be credited instead directly booking to Profit & Loss Account
+            </p>
+            <p>
+<li>	Select Analytic Account - Project 	</li>
+<li>	Select Invoiced / Advance Account	</li>
+<li>	Select Project Income Account	</li>
+<li>	Select WIP Account 	</li>
+<li>	Select Project Cost Account	</li>
+<li>	Enable Provision (if need a provision for contingencies)	</li>
+<li>	Provision Account	</li>
+
+
+            </p>
+<p>
+<li>	In validate journal entry will be created 	</li>
+<li>	Project Income Account Credit               A Value	</li>
+<li>	WIP Credit	B Value</li>
+<li>	Provision account Credit	C Value</li>
+<li>	Invoice / Advanced Account Debit 	A Value</li>
+<li>	Project Cost of Sales Debit	        B Value + C Value </li>
+
+</p>
+        </div>
+    </div>
+</section>

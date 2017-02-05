@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="report_contracting_enquiry"
+            string="Enquiry"
+            model="contracting.enquiry" 
+            report_type="qweb-pdf"
+            file="contracting.report_enquiry" 
+            name="contracting.report_enquiry" 
+        />
+
+        <report 
+            id="report_contracting_estimation"
+            string="Estimation"
+            model="contracting.estimation" 
+            report_type="qweb-pdf"
+            file="contracting.report_estimation" 
+            name="contracting.report_estimation" 
+        />
+
+        <report 
+            id="report_contracting_budget"
+            string="Budget"
+            model="contracting.budget" 
+            report_type="qweb-pdf"
+            file="contracting.report_contract_budget" 
+            name="contracting.report_contract_budget" 
+        />
+
+<!--        <report -->
+<!--            id="report_contracting_budget_w_bom"-->
+<!--            string="Budget with BOM"-->
+<!--            model="contracting.budget" -->
+<!--            report_type="qweb-pdf"-->
+<!--            file="contracting.report_budget_with_bom" -->
+<!--            name="contracting.report_budget_with_bom" -->
+<!--        />-->
+
+    </data>
+</openerp>

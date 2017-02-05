@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<!--    <data noupdate="1">-->
+    <data>
+        <!-- Sequences for Contracting Enquiry -->
+<!--        <record id="seq_type_contracting_enquiry" model="ir.sequence.type">-->
+<!--            <field name="name">Contract Enquiry</field>-->
+<!--            <field name="code">contracting.enquiry</field>-->
+<!--        </record>-->
+
+        <record id="seq_contracting_enquiry" model="ir.sequence">
+            <field name="name">Contract Enquiry</field>
+            <field name="code">contracting.enquiry</field>
+            <field name="prefix">ENQ</field>
+            <field name="padding">3</field>
+        </record>
+
+
+        <!-- Sequences for Contracting Estimation -->
+
+<!--        <record id="seq_type_contracting_estimation" model="ir.sequence.type">-->
+<!--            <field name="name">Contract Estimation</field>-->
+<!--            <field name="code">contracting.estimation</field>-->
+<!--        </record>-->
+
+        <record id="seq_contracting_estimation" model="ir.sequence">
+            <field name="name">Contract Estimation</field>
+            <field name="code">contracting.estimation</field>
+            <field name="prefix">EST</field>
+            <field name="padding">3</field>
+        </record>
+
+
+
+        <!-- Sequences for Contracting Budget -->
+
+<!--        <record id="seq_type_contracting_budget" model="ir.sequence.type">-->
+<!--            <field name="name">Contract Budget</field>-->
+<!--            <field name="code">contracting.budget</field>-->
+<!--        </record>-->
+
+        <record id="seq_contracting_budget" model="ir.sequence">
+            <field name="name">Contract Budget</field>
+            <field name="code">contracting.budget</field>
+            <field name="prefix">BD</field>
+            <field name="padding">3</field>
+        </record>
+
+
+
+<!--        <record id="seq_type_matrial_req" model="ir.sequence.type">-->
+<!--            <field name="name">Material Req</field>-->
+<!--            <field name="code">sight.material.request</field>-->
+<!--        </record>-->
+
+        <record id="seq_matrial_req" model="ir.sequence">
+            <field name="name">Material Req</field>
+            <field name="code">sight.material.request</field>
+            <field name="prefix">MET/</field>
+            <field name="padding">3</field>
+        </record>
+
+
+
+<!--        <record id="seq_type_labour_req" model="ir.sequence.type">-->
+<!--            <field name="name">Labour Req</field>-->
+<!--            <field name="code">sight.labour.request</field>-->
+<!--        </record>-->
+
+        <record id="seq_labour_req" model="ir.sequence">
+            <field name="name">Labour Req</field>
+            <field name="code">sight.labour.request</field>
+            <field name="prefix">LB/</field>
+            <field name="padding">3</field>
+        </record>
+
+<!--        <record id="seq_type_asset_req" model="ir.sequence.type">-->
+<!--            <field name="name">asset Req</field>-->
+<!--            <field name="code">sight.asset.request</field>-->
+<!--        </record>-->
+
+        <record id="seq_asset_req" model="ir.sequence">
+            <field name="name">asset Req</field>
+            <field name="code">sight.asset.request</field>
+            <field name="prefix">AST/</field>
+            <field name="padding">3</field>
+        </record>
+
+    </data>
+</openerp>
+

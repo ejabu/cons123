@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+
+        <record id="contracting_budget_filter" model="ir.ui.view">
+            <field name="name">Budget</field>
+            <field name="model">contracting.budget</field>
+            <field name="arch" type="xml">
+                <search string="Contracting">
+                            
+                            <field name="customer_id"/>  
+                            <field name="estimator_id"/>
+                            <field name="reviewer_id"/>
+                            <field name="currency_id"/>
+                            <field name="job_type_id" /> 
+                 <filter string="Job Type" domain="[]" context="{'group_by':'job_type_id'}"/>
+                 <filter string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+                 <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                </search>
+            </field>
+        </record>
+
+<!--<contracting.budget form>-->
+        <record id="contracting_budget_form" model="ir.ui.view">
+            <field name="name">Budget</field>
+            <field name="model">contracting.budget</field>
+            <field name="arch" type="xml">
+                <form string="Contracting" >
+                    <header>
+
+
+                         <button name="button_confirm" string="Confirm" type="object" states="draft"/>
+                        <button name="button_done" string="Done" type="object" states="confirm"/>
+
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done" statusbar_colors='{"cancel":"red","draft":"blue"}'/>
+                    </header>
+                    <h1>
+                        <field name="name" class="oe_inline" readonly="1" attrs="{'invisible': [('name','=','/')]}"/>
+                    </h1>
+
+                    <group>
+                        <group colspan="4">
+                            <label for="estimation_id"/>
+                                <div>
+                                  <field name="estimation_id" on_change="onchange_estimation_id(estimation_id)" class="oe_inline"/>
+                                  <button name="copy_estimate" string="Copy" type="object" class="oe_link oe_edit_only"/>
+                                  <field name="copy_det_bom" class="oe_link oe_edit_only"/>
+                                  <label for="copy_det_bom" class="oe_link oe_edit_only" />
+                                </div>
+                                 
+                        </group>
+                        <group>
+
+
+                            <field name="customer_id" domain="[('customer','=',True)]" context="{'default_customer':True}"/>  
+<field name="account_analytic_id"/>
+                            <field name="estimator_id"/>
+                            <field name="reviewer_id"/>
+                            <field name="currency_id"/>
+                            <field name="job_type_id" /> 
+                            <field name="ref"/>
+                        </group>
+                    <group>
+                            <field name="date"/>  
+                            <field name="planned_date"/>  
+                        <label for="start_date" string="Duration"/>
+                        <div>
+                            <field name="start_date" class="oe_inline"/> - <field name="end_date" class="oe_inline"/>
+                        </div>
+                        <label for="street" string="Address"/>
+                        <div>
+                            <field name="area" placeholder="Area"/>
+                            <field name="address" placeholder="Address"/>
+                            <field name="city" placeholder="City"/>
+                            <field name="state_id" placeholder="State" on_change="onchange_state(state_id)"/>
+                            <field name="country_id" placeholder="Country"/>
+                        </div>
+                        <field name="distance"/>
+
+                    </group>                    
+                  </group>
+
+
+            <group string="Material">
+                    <field name="material_line" nolabel="1" >
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+                            <field name="account_analytic_id" invisible="1" />
+                            <field name="name"/>
+                             <field name="partner_id"/>
+                            <field name="parent_id" invisible="1"/>
+                            <field name="product_id" on_change="onchange_product_id(product_id)" />
+                            <field name="bom_id" domain="[('product_tmpl_id','=',product_id)]"/>
+                            <field name="qty" on_change="onchange_qty_rate(qty,rate,actual_amt)"/>
+                            <field name="unit_id" groups="product.group_uom" />
+                            <field name="rate" />
+                            <field name="budget_amount" sum="Budget"/>
+                            <field name="utilized" invisible="1"/>
+                            <field name="actual_amt"  sum="Actual Amount" invisible="1"/>
+                            <field name="bal_amount" sum="Balance" invisible="1"/>
+                        </tree>
+                    </field>
+            </group>
+
+            <group string="Labour">
+                   <field name="labour_line" nolabel="1" >
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+                            <field name="account_analytic_id"  invisible="1"/>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="timesheet_product_id"/>
+                            <field name="parent_id" invisible="1"/>
+                            <field name="qty" />
+                            <field name="unit_id" groups="product.group_uom" />
+                            <field name="rate" />
+                            <field name="budget_amount" sum="Budget"/>
+                            <field name="utilized" invisible="1"/>
+                            <field name="actual_amt"  sum="Actual Amount" invisible="1"/>
+                            <field name="bal_amount" sum="Balance" invisible="1"/>
+                        </tree>
+                    </field>
+            </group>
+
+            <group string="Sub Contract">
+                   <field name="sub_cont_line" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+                            <field name="account_analytic_id" invisible="1"  />
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="parent_id" invisible="1"/>
+                            <field name="qty" />
+                            <field name="unit_id" groups="product.group_uom" />
+                            <field name="rate" />
+                            <field name="budget_amount" sum="Budget"/>
+                            <field name="utilized" invisible="1"/>
+                            <field name="actual_amt"  sum="Actual Amount" invisible="1"/>
+                            <field name="bal_amount" sum="Balance" invisible="1"/>
+                        </tree>
+                    </field>
+            </group>
+
+            <group string="Tools and Equipments">
+                   <field name="eqp_line" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+                             <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+                           <field name="account_analytic_id" invisible="1" />
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="parent_id" invisible="1"/>
+                            <field name="asset_id"/>
+                            <field name="qty" />
+                            <field name="unit_id" groups="product.group_uom" />
+                            <field name="rate" />
+                            <field name="budget_amount" sum="Budget"/>
+                            <field name="utilized" invisible="1"/>
+                            <field name="actual_amt"  sum="Actual Amount" invisible="1"/>
+                            <field name="bal_amount" sum="Balance" invisible="1"/>
+                        </tree>
+                    </field>
+            </group>
+
+            <group string="Logistics and Transportation">
+                   <field name="log_line" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+                            <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+                            <field name="account_analytic_id" invisible="1" />
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="parent_id" invisible="1"/>
+                            <field name="qty" />
+                            <field name="unit_id" groups="product.group_uom" />
+                            <field name="rate" />
+                            <field name="budget_amount" sum="Budget"/>
+                            <field name="utilized" invisible="1"/>
+                            <field name="actual_amt"  sum="Actual Amount" invisible="1"/>
+                            <field name="bal_amount" sum="Balance" invisible="1"/>
+                        </tree>
+                    </field>
+            </group>
+
+            <group string="Misc">
+                   <field name="mis_line" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" invisible="1"/>
+                             <field name="cost_code_id" on_change="onchange_cost_code(cost_code_id)"/>
+                            <field name="account_analytic_id" invisible="1"/>
+
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="parent_id" invisible="1"/>
+
+                            <field name="qty" />
+                            <field name="unit_id" groups="product.group_uom" />
+                            <field name="rate" />
+                            <field name="budget_amount" sum="Budget"/>
+                            <field name="utilized" invisible="1"/>
+                            <field name="actual_amt"  sum="Actual Amount" invisible="1"/>
+                            <field name="bal_amount" sum="Balance" invisible="1"/>
+
+                        </tree>
+                    </field>
+            </group>
+
+                <div class="oe_clear"/>
+                     <field name="description" class="oe_inline" placeholder="Description....."/>
+
+                </form>
+           </field>
+        </record>
+
+<!--contracting.budget tree-->
+        <record id="contracting_budget_tree" model="ir.ui.view">
+            <field name="name">Budget Tree</field>
+            <field name="model">contracting.budget</field>
+            <field name="arch" type="xml">
+                <tree string="Contracting" version="7.0">
+                    <field name="name"/>
+                    <field name="customer_id"/>  
+                    <field name="currency_id"/>
+                    <field name="job_type_id"/> 
+
+                </tree>
+           </field>
+        </record>
+
+<!--action contracting.budget-->
+        <record id="contracting_budget_action" model="ir.actions.act_window">
+            <field name="name">Budget</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracting.budget</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Record.
+              </p>
+            </field>
+        </record>
+
+    </data>
+</openerp>

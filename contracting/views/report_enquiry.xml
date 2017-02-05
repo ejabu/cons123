@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<template id="report_enquiry">
+
+   <t t-call="report.external_layout">
+		<t t-foreach="docs" t-as="o">
+			<div class="page">
+				<div class="oe_structure"/>
+				
+				<div align="center">
+					<h2>
+						<span>Enquiry</span>
+					</h2>	
+				</div>
+				<br/>
+				<br/>
+				<div class="row" >
+					<div class="col-xs-2" style="text-align:left;">
+						   <strong>Customer</strong><br/>
+						   <strong>Currency</strong><br/>
+						   <strong>Job Type</strong><br/>
+						   <strong>Reference</strong><br/>
+					</div>
+					 <div class="col-xs-4">  
+								: <span t-field="o.customer_id"/><br/>
+								: <span t-field="o.currency_id"/><br/>
+								: <span t-field="o.job_type_id"/><br/>
+								: <span t-field="o.ref"/><br/>
+					</div>
+					<div class="col-xs-2">
+								<br/>
+								<br/>
+								<br/>
+					</div>
+					<div class="col-xs-2" style="text-align:left;">
+						   <strong>Date</strong><br/>
+						   <strong>Submission Date</strong><br/>
+						   <strong>Address</strong><br/>
+					</div>
+					<div class="col-xs-2" >
+					   : <span t-field="o.date" t-field-options='{"format": "dd/ MM/ yyyy"}'/><br/>
+					   : <span t-field="o.submission_date" t-field-options='{"format": "dd/ MM/ yyyy"}'/><br/>
+					   : <span t-field="o.area"/> , <span t-field="o.state_id"/> <br/>
+					   : <span t-field="o.country_id"/> 
+					</div>
+				</div>  
+				<br/>
+				<br/>
+				
+				<table class="table table-condensed" style="border:1px solid black; border-bottom:1px solid black;">
+					<thead>
+						<tr>
+							<th style="border-right:1px solid black;">Attachment Type</th>
+							<th style="border-right:1px solid black;">Name</th>
+							
+							<th class="text-left">Description</th>
+						</tr>
+				   </thead>
+				   <tbody class="sale_tbody">
+						<tr t-foreach="o.attachment_line" t-as="l">
+							<td  style="border-right:1px solid black;">
+								<span t-field="l.attachment_type"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.name"/>
+							</td>
+							<td>
+								<span t-field="l.description"/>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</t>
+    </t>
+
+</template>
+</data>
+</openerp>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<template id="report_budget_with_bom">
+
+    <t t-call="report.html_container">
+        <t t-call="report.internal_layout">
+            <div class="page">
+                <h2>This is your space to modify WITH BOM -Budget </h2>
+            </div>
+        </t>
+
+    </t>
+</template>
+</data>
+</openerp>

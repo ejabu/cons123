@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+
+        <record id="view_contractig_enquiry_filter" model="ir.ui.view">
+            <field name="name">Enquiry</field>
+            <field name="model">contracting.enquiry</field>
+            <field name="arch" type="xml">
+                <search string="Enquiry">
+                    <field name="name"/>
+                    <field name="customer_id"/>  
+                    <field name="currency_id"/>
+                    <field name="job_type_id"/> 
+                 <filter string="Job Type" domain="[]" context="{'group_by':'job_type_id'}"/>
+                 <filter string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+                </search>
+            </field>
+        </record>
+
+
+
+      <record model="ir.ui.view" id="price_enquiry_kanban_view_leads">
+            <field name="name">Enquiry Kanban</field>
+            <field name="model">contracting.enquiry</field>
+            <field name="arch" type="xml">
+<kanban default_group_by="stage_id">
+                    <field name="color"/>
+                    <field name="customer_id"/>
+                   <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                              <!--   <div class="oe_dropdown_toggle oe_dropdown_kanban">
+                                    <span class="oe_e">í</span>
+                                    <ul class="oe_dropdown_menu">
+                                        <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                        <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div> -->
+                                <div class="oe_kanban_content">
+                                    <div>
+                                        <b><field name="name"/></b>
+                                    </div>
+                                    <div>
+                                        <field name="customer_id"/>       
+                                    </div>
+                                    <div>
+                                     <field name="city"/>
+                                     <field name="state_id"/>
+                                    </div>
+                                 <div>
+                                     <field name="date"/>
+                                     <field name="ref"/>
+                                    </div>
+                                    <div>
+                                    <field name="country_id"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+<!--<contracting.enquiry form>-->
+        <record id="contracting_enquiry_form" model="ir.ui.view">
+            <field name="name">Enquiry Form</field>
+            <field name="model">contracting.enquiry</field>
+            <field name="arch" type="xml">
+                <form string="Enquiry">
+                    <header>
+                        <field name="stage_id" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}"/>
+                    </header>
+                    <sheet>
+
+                    <h1>
+                        <field name="name" class="oe_inline" readonly="1" attrs="{'invisible': [('name','=','/')]}"/>
+                    </h1>
+                    <group>
+                        <group>
+                          
+<!--                            <label for="name"/>-->
+                
+                            <field name="customer_id" domain="[('customer','=',True)]" context="{'default_customer':True}"/>  
+                            <field name="currency_id"/>
+                            <field name="job_type_id" /> 
+                            <field name="ref"/>
+                          
+                        </group>
+                     <group>
+                            <field name="date"/>  
+                            <field name="submission_date"/>
+                            <field name="lead_id"/>  
+                        <label for="street" string="Address"/>
+                        <div>
+                            <field name="area" placeholder="Area"/>
+                            <field name="address" placeholder="Address"/>
+                            <field name="city" placeholder="City"/>
+                            <field name="state_id" placeholder="State" on_change="onchange_state(state_id)"/>
+                            <field name="country_id" placeholder="Country"/>
+                        </div>
+
+                    </group>                    
+                  </group>
+                <group string="Documents">
+                    <field name="attachment_line" nolabel="1">
+                        <tree editable="top">
+                            <field name="attachment_type"/>
+                            <field name="name"/>                            
+                            <field name="attachment"/>
+                            <field name="description"/>
+                        </tree>
+                    </field>
+                </group>
+ 
+                <div class="oe_clear"/>
+                            <field name="description" class="oe_inline" placeholder="Description....."/>
+                </sheet>
+                </form>
+           </field>
+        </record>
+
+<!--contracting.enquiry tree-->
+        <record id="contracting_enquiry_tree" model="ir.ui.view">
+            <field name="name">Enquiry Tree</field>
+            <field name="model">contracting.enquiry</field>
+            <field name="arch" type="xml">
+                <tree string="Contracting" version="7.0">
+                    <field name="name"/>
+                    <field name="customer_id"/>  
+                    <field name="currency_id"/>
+                    <field name="job_type_id"/> 
+
+                </tree>
+           </field>
+        </record>
+
+<!--action contracting.enquiry Enquiry Action-->
+        <record id="contracting_enquiry_action" model="ir.actions.act_window">
+            <field name="name">Enquiry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracting.enquiry</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Record.
+              </p>
+            </field>
+        </record>
+
+<!--action contracting.enquiry Enquiry Action-->
+        <record id="contracting_enquiry_kanban_action" model="ir.actions.act_window">
+            <field name="name">Enquiry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracting.enquiry</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Record.
+              </p>
+            </field>
+        </record>
+
+    </data>
+</openerp>

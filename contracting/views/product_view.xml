@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+
+       <record model="ir.ui.view" id="contracting_product_product_form_view_bom_button">
+            <field name="name">product.product.procurement</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="mrp.product_product_form_view_bom_button"/>
+            <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+            <field name="arch" type="xml">
+                <button name="action_view_bom" position="replace">
+                    <button class="oe_inline oe_stat_button" name="action_view_bom" type="object" icon="fa-flask">
+                        <field string="Bill of Materials" name="bom_count" widget="statinfo" />
+                    </button>
+                </button>
+                
+            </field>
+        </record>
+
+    </data>
+</openerp>

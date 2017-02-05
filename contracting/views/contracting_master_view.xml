@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!--<cont.attachment.type form>-->
+        <record id="contracting_attachment_type_form" model="ir.ui.view">
+            <field name="name">Cont Attachment Type </field>
+            <field name="model">contracting.attachment.type</field>
+            <field name="arch" type="xml">
+                <form string="Attachment Type" >
+                    <sheet>
+                    <group>
+                        <group>
+                            <label for="code"/>
+                            <h2><field name="code" /></h2>
+                            <label for="name"/>
+                            <h2><field name="name"/>    </h2>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                <div class="oe_clear"/>
+                            <field name="description" class="oe_inline" placeholder="Description....."/>
+                </sheet>
+                </form>
+           </field>
+        </record>
+
+<!--cont.attachment.type tree-->
+        <record id="contracting_attachment_type_tree" model="ir.ui.view">
+            <field name="name">Cont Attachment Type Tree</field>
+            <field name="model">contracting.attachment.type</field>
+            <field name="arch" type="xml">
+                <tree string="Unit Type" >
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+           </field>
+        </record>
+<!--action cont.attachment.type-->
+        <record id="contracting_attachment_type_action" model="ir.actions.act_window">
+            <field name="name">Attachment Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracting.attachment.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Attachment Type.
+              </p>
+            </field>
+        </record>
+
+
+
+
+<!--<cont.job.type form>-->
+        <record id="contracting_job_type_form" model="ir.ui.view">
+            <field name="name">Cont Job Type </field>
+            <field name="model">contracting.job.type</field>
+            <field name="arch" type="xml">
+                <form string="job Type" >
+                    <sheet>
+                    <group>
+                        <group>
+                            <label for="code"/>
+                            <h2><field name="code" /></h2>
+                            <label for="name"/>
+                            <h2><field name="name"/>    </h2>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                <div class="oe_clear"/>
+                            <field name="description" class="oe_inline" placeholder="Description....."/>
+                </sheet>
+                </form>
+           </field>
+        </record>
+
+<!--cont.job.type tree-->
+        <record id="contracting_job_type_tree" model="ir.ui.view">
+            <field name="name">Cont Job Type Tree</field>
+            <field name="model">contracting.job.type</field>
+            <field name="arch" type="xml">
+                <tree string="Unit Type" >
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+           </field>
+        </record>
+<!--action cont.job.type-->
+        <record id="contracting_job_type_action" model="ir.actions.act_window">
+            <field name="name">Job Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracting.job.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new job Type.
+              </p>
+            </field>
+        </record>
+
+
+<!--<cost.code form>-->
+        <record id="cost_code_form" model="ir.ui.view">
+            <field name="name">Cost Code Form</field>
+            <field name="model">cost.code</field>
+            <field name="arch" type="xml">
+                <form string="Cost Code" version="7.0">
+                    <sheet>
+                    <group>
+                        <group>
+                            <label for="code"/>
+                            <h2><field name="code" /></h2>
+                            <label for="name"/>
+                            <h2><field name="name"/>    </h2>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                <div class="oe_clear"/>
+                            <field name="description" class="oe_inline" placeholder="Description....."/>
+                </sheet>
+                </form>
+           </field>
+        </record>
+
+<!--cost.code tree-->
+        <record id="cost_code_tree" model="ir.ui.view">
+            <field name="name">Cost Code Form</field>
+            <field name="model">cost.code</field>
+            <field name="arch" type="xml">
+                <tree string="Cost Code" version="7.0">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+           </field>
+        </record>
+<!--action cost.code-->
+        <record id="cost_code_action" model="ir.actions.act_window">
+            <field name="name">Cost Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cost.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Cost Code.
+              </p>
+            </field>
+        </record>
+
+
+
+
+
+
+<!--<Enquiry Stages updates>-->
+
+        <record id="contracting_enquiry_stage_tree" model="ir.ui.view">
+            <field name="name">contracting.enquiry.stage.tree</field>
+            <field name="model">contracting.enquiry.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Task Stage">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="fold"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="contracting_enquiry_stage_edit" model="ir.ui.view">
+            <field name="name">contracting.enquiry.stage.form</field>
+            <field name="model">contracting.enquiry.stage</field>
+            <field name="arch" type="xml">
+                <form string="Enquiry Stage" >
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+<!--                            <field name="case_default"/>-->
+                            <field name="fold"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Add a description..."/>
+                   </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="contracting_enquiry_stage_action" model="ir.actions.act_window">
+            <field name="name">Stages</field>
+            <field name="res_model">contracting.enquiry.stage</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="contracting_enquiry_stage_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a stage in the contract enquiry.
+              </p>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

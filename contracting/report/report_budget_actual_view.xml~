@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_budget_actual_filter" model="ir.ui.view">
+         <field name="name">Budget Analaysis</field>
+         <field name="model">report.budget.actual.view</field>
+            <field name="arch" type="xml">
+                <search string="Asset Sheet">
+
+                    <filter string="Project" domain="[]" context="{'group_by':'analytic_id'}"/>
+
+                </search>
+            </field>
+        </record>
+
+    <record id="view_report_budget_actual_graph" model="ir.ui.view">
+         <field name="name">Budget Analaysis</field>
+         <field name="model">report.budget.actual.view</field>
+         <field name="arch" type="xml">
+             <graph string="Budget" type="pivot" stacked="True">
+                 <field name="analytic_id" />
+                <field name="boq_budget" type="measure"/>
+                <field name="acc_budget" type="measure"/>
+                <field name="actual" type="measure"/>
+            
+             </graph>
+         </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="action_report_budget_actual_graph">
+         <field name="name">Budget Analaysis</field>
+            <field name="res_model">report.budget.actual.view</field>
+            <field name="view_mode">graph</field>
+        </record>
+
+    </data>
+</openerp>

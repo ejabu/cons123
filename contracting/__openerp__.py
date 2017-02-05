@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+{
+    'name' : 'Job Costing (Contracting)',
+    'version' : '1.0.3',
+    'author': 'Orchid Infosys',
+    'category' : 'Contracting',
+    'description': '''Contracting, Estimation, Material Issue, Labour Cost, WIP,  Job Closing, Revenue & Cost Booking''',
+    'website': 'http://www.orchidinfosys.com',
+    'depends': ['crm','sale','purchase','stock_account','analytic','account_budget','mrp','project','hr_payroll','hr_timesheet','account_asset','product_extended',],
+    'data' : [
+        'security/ir.model.access.csv',
+        'wizard/create_quotation_from_estimation_wizard_view.xml',
+        'wizard/asset_timesheet_inv_wiz_view.xml',
+
+        'contracting_seq.xml',
+        'views/product_view.xml',
+        'views/contracting_master_view.xml',
+        'views/contracting_enquiry_view.xml',
+        'views/crm_lead_view.xml',
+        'views/contracting_view_estimation.xml',
+        'views/contracting_budget_view.xml',
+        'views/wip_view.xml',
+        'views/labour_view.xml',
+        'views/asset_timesheet_view.xml',
+        'views/sight_request_view.xml',
+        'views/stock_view.xml',
+
+        'views/report_enquiry.xml',
+        'views/report_estimation.xml',
+        'views/report_contract_budget.xml',
+#        'views/report_budget_with_bom.xml',
+        'report/report_budget_actual_view.xml',
+        'report/report_material_analysis_view.xml',
+        'contracting_report.xml',
+        'contracting_menu.xml',
+],
+    'price': 350,
+    'currency': 'EUR',
+    
+    'css': [],
+    'images': ['images/main_screenshot.png'],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

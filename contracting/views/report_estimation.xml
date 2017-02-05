@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<template id="report_estimation">
+
+    <t t-call="report.html_container">
+        <t t-call="report.internal_layout">
+		<t t-foreach="docs" t-as="o">
+            <div class="page">
+               <div align="center">
+					<h2 style="background-color:#568eff; border: 1px solid #568eff; color:#ffffff;">
+						<span>Estimation</span>
+					</h2>	
+				</div>
+				<br/>
+				<h2>
+					<span> <span t-field="o.name"/></span>
+				</h2>
+				<br/>
+				<div class="row" >
+					<div class="col-xs-2" style="text-align:left;">
+						   <strong>Enquiry No</strong><br/>
+						   <strong>Customer</strong><br/>
+						   <strong>Estimator</strong><br/>
+						   <strong>Reviewer</strong><br/>
+						   <strong>Currency</strong><br/>
+						   <strong>Job Type</strong><br/>
+						   <strong>Reference</strong><br/>
+						   <strong>Total Cost</strong><br/>
+						   <strong>Total Margin</strong><br/>
+						   <strong>Total Estimation</strong><br/>
+					</div>
+					 <div class="col-xs-4">  
+								: <span t-field="o.enq_no"/><br/>
+								: <span t-field="o.customer_id"/><br/>
+								: <span t-field="o.estimator_id"/><br/>
+								: <span t-field="o.reviewer_id"/><br/>
+								: <span t-field="o.currency_id"/><br/>
+								: <span t-field="o.job_type_id"/><br/>
+								: <span t-field="o.ref"/><br/>
+								: <span t-field="o.total_cost"/><br/>
+								: <span t-field="o.total_margin"/><br/>
+								: <span t-field="o.total_estimation"/><br/>
+					</div>
+					<div class="col-xs-1">
+								<br/>
+								<br/>
+								<br/>
+					</div>
+					<div class="col-xs-2" style="text-align:left;">
+						   <strong>Date</strong><br/>
+						   <strong>Submission Date</strong><br/>
+						   <strong>Duration</strong><br/>
+						   
+						   <strong>Address</strong><br/>
+						   <strong></strong><br/>
+						   <strong></strong><br/>
+						   <strong></strong><br/>
+						   <strong>Distance</strong><br/>
+					</div>
+					<div class="col-xs-3" >
+					   : <span t-field="o.date" t-field-options='{"format": "dd/ MM/ yyyy"}'/><br/>
+					   : <span t-field="o.submission_date" t-field-options='{"format": "dd/ MM/ yyyy"}'/><br/>
+					   : <span t-field="o.start_date" t-field-options='{"format": "dd/ MM/ yyyy"}' /> - 
+								<span t-field="o.end_date" t-field-options='{"format": "dd/ MM/ yyyy"}' /><br/>
+					   : <span t-field="o.area"/> <br/>
+					   : <span t-field="o.city"/> <br/>
+					   : <span t-field="o.state_id"/> <br/>
+					   : <span t-field="o.country_id"/> <br/>
+					   : <span t-field="o.distance"/> <br/>
+					</div>
+				</div>  
+				<br/>
+				<br/>
+				<h2  style="background-color:#ECF2E9; border: 1px solid #ECF2E9; color:#000;">
+					<span>Materials</span>
+				</h2>
+				<table class="table table-condensed" style="border:1px solid black; border-bottom:1px solid black;">
+					<thead>
+						<tr>
+							<th style="border-right:1px solid black;">Cost Code</th>
+							<th style="border-right:1px solid black;">Description</th>
+							<th style="border-right:1px solid black;">Partner</th>
+							<th style="border-right:1px solid black;">BOM</th>
+							<th style="border-right:1px solid black;">Unit</th>
+							<th style="border-right:1px solid black;">Remark</th>
+							<th style="border-right:1px solid black;">Qty</th>
+							<th style="border-right:1px solid black;">Rate</th>
+							<th style="border-right:1px solid black;">Cost</th>
+							<th style="border-right:1px solid black;">Margin%</th>
+							<th style="border-right:1px solid black;">Margin Amount</th>
+							<th style="border-right:1px solid black;">Estimation</th>
+						</tr>
+				   </thead>
+				   <tbody class="sale_tbody">
+						<tr t-foreach="o.material_line" t-as="l">
+							<td  style="border-right:1px solid black;">
+								<span t-field="l.cost_code_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.name"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.partner_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.bom_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.unit_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.remarks"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.qty"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.rate"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.amount"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.margin"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.margin_amt"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="l.est_amount"/>
+							</td>
+							
+							
+						</tr>
+					</tbody>
+				</table> 
+				<br/>
+				<h2  style="background-color:#ECF2E9; border: 1px solid #ECF2E9; color:#000;">
+					<span>Labour</span>
+				</h2>
+				<table class="table table-condensed" style="border:1px solid black; border-bottom:1px solid black;">
+					<thead>
+						<tr>
+							<th style="border-right:1px solid black;">Cost Code</th>
+							<th style="border-right:1px solid black;">Description</th>
+							<th style="border-right:1px solid black;">Partner</th>
+							<th style="border-right:1px solid black;">Time sheet Product</th>
+							<th style="border-right:1px solid black;">Unit</th>
+							<th style="border-right:1px solid black;">Remarks</th>
+							<th style="border-right:1px solid black;">Qty</th>
+							<th style="border-right:1px solid black;">Rate</th>
+							<th style="border-right:1px solid black;">Cost</th>
+							<th style="border-right:1px solid black;">Margin%</th>
+							<th style="border-right:1px solid black;">Margin Amount</th>
+							<th style="border-right:1px solid black;">Estimation</th>
+						</tr>
+				   </thead>
+				   <tbody class="sale_tbody">
+						<tr t-foreach="o.labour_line" t-as="k">
+							<td  style="border-right:1px solid black;">
+								<span t-field="k.cost_code_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.name"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.partner_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.timesheet_product_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.unit_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.remarks"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.qty"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.rate"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.amount"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin_amt"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.est_amount"/>
+							</td>
+							
+							
+						</tr>
+					</tbody>
+				</table> 
+				<br/>
+				<h2  style="background-color:#ECF2E9; border: 1px solid #ECF2E9; color:#000;">
+					<span>Sub Contract</span>
+				</h2>
+				<table class="table table-condensed" style="border:1px solid black; border-bottom:1px solid black;">
+					<thead>
+						<tr>
+							<th style="border-right:1px solid black;">Cost Code</th>
+							<th style="border-right:1px solid black;">Description</th>
+							<th style="border-right:1px solid black;">Partner</th>
+							
+							<th style="border-right:1px solid black;">Unit</th>
+							<th style="border-right:1px solid black;">Remarks</th>
+							<th style="border-right:1px solid black;">Qty</th>
+							<th style="border-right:1px solid black;">Rate</th>
+							<th style="border-right:1px solid black;">Cost</th>
+							<th style="border-right:1px solid black;">Margin%</th>
+							<th style="border-right:1px solid black;">Margin Amount</th>
+							<th style="border-right:1px solid black;">Estimation</th>
+						</tr>
+				   </thead>
+				   <tbody class="sale_tbody">
+						<tr t-foreach="o.sub_cont_line" t-as="k">
+							<td  style="border-right:1px solid black;">
+								<span t-field="k.cost_code_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.name"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.partner_id"/>
+							</td>
+							
+							<td style="border-right:1px solid black;">
+								<span t-field="k.unit_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.remarks"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.qty"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.rate"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.amount"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin_amt"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.est_amount"/>
+							</td>
+							
+							
+						</tr>
+					</tbody>
+				</table> 
+				<br/>
+				<h2  style="background-color:#ECF2E9; border: 1px solid #ECF2E9; color:#000;">
+					<span>Tools and Equipments</span>
+				</h2>
+				<table class="table table-condensed" style="border:1px solid black; border-bottom:1px solid black;">
+					<thead>
+						<tr>
+							<th style="border-right:1px solid black;">Cost Code</th>
+							<th style="border-right:1px solid black;">Description</th>
+							<th style="border-right:1px solid black;">Partner</th>
+							
+							<th style="border-right:1px solid black;">Unit</th>
+							<th style="border-right:1px solid black;">Remarks</th>
+							<th style="border-right:1px solid black;">Qty</th>
+							<th style="border-right:1px solid black;">Rate</th>
+							<th style="border-right:1px solid black;">Cost</th>
+							<th style="border-right:1px solid black;">Margin%</th>
+							<th style="border-right:1px solid black;">Margin Amount</th>
+							<th style="border-right:1px solid black;">Estimation</th>
+						</tr>
+				   </thead>
+				   <tbody class="sale_tbody">
+						<tr t-foreach="o.eqp_line" t-as="k">
+							<td  style="border-right:1px solid black;">
+								<span t-field="k.cost_code_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.name"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.partner_id"/>
+							</td>
+							
+							<td style="border-right:1px solid black;">
+								<span t-field="k.unit_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.remarks"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.qty"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.rate"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.amount"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin_amt"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.est_amount"/>
+							</td>
+							
+							
+						</tr>
+					</tbody>
+				</table>
+				<br/>
+				<h2  style="background-color:#ECF2E9; border: 1px solid #ECF2E9; color:#000;">
+					<span>Logistics and Transportation</span>
+				</h2>
+				<table class="table table-condensed" style="border:1px solid black; border-bottom:1px solid black;">
+					<thead>
+						<tr>
+							<th style="border-right:1px solid black;">Cost Code</th>
+							<th style="border-right:1px solid black;">Description</th>
+							<th style="border-right:1px solid black;">Partner</th>
+							
+							<th style="border-right:1px solid black;">Unit</th>
+							<th style="border-right:1px solid black;">Remarks</th>
+							<th style="border-right:1px solid black;">Qty</th>
+							<th style="border-right:1px solid black;">Rate</th>
+							<th style="border-right:1px solid black;">Cost</th>
+							<th style="border-right:1px solid black;">Margin%</th>
+							<th style="border-right:1px solid black;">Margin Amount</th>
+							<th style="border-right:1px solid black;">Estimation</th>
+						</tr>
+				   </thead>
+				   <tbody class="sale_tbody">
+						<tr t-foreach="o.log_line" t-as="k">
+							<td  style="border-right:1px solid black;">
+								<span t-field="k.cost_code_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.name"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.partner_id"/>
+							</td>
+							
+							<td style="border-right:1px solid black;">
+								<span t-field="k.unit_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.remarks"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.qty"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.rate"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.amount"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin_amt"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.est_amount"/>
+							</td>
+							
+							
+						</tr>
+					</tbody>
+				</table> 
+				<br/>
+				<h2  style="background-color:#ECF2E9; border: 1px solid #ECF2E9; color:#000;">
+					<span>Misc</span>
+				</h2>
+				<table class="table table-condensed" style="border:1px solid black; border-bottom:1px solid black;">
+					<thead>
+						<tr>
+							<th style="border-right:1px solid black;">Cost Code</th>
+							<th style="border-right:1px solid black;">Description</th>
+							<th style="border-right:1px solid black;">Partner</th>
+							
+							<th style="border-right:1px solid black;">Unit</th>
+							<th style="border-right:1px solid black;">Remarks</th>
+							<th style="border-right:1px solid black;">Qty</th>
+							<th style="border-right:1px solid black;">Rate</th>
+							<th style="border-right:1px solid black;">Cost</th>
+							<th style="border-right:1px solid black;">Margin%</th>
+							<th style="border-right:1px solid black;">Margin Amount</th>
+							<th style="border-right:1px solid black;">Estimation</th>
+						</tr>
+				   </thead>
+				   <tbody class="sale_tbody">
+						<tr t-foreach="o.mis_line" t-as="k">
+							<td  style="border-right:1px solid black;">
+								<span t-field="k.cost_code_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.name"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.partner_id"/>
+							</td>
+							
+							<td style="border-right:1px solid black;">
+								<span t-field="k.unit_id"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.remarks"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.qty"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.rate"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.amount"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.margin_amt"/>
+							</td>
+							<td style="border-right:1px solid black;">
+								<span t-field="k.est_amount"/>
+							</td>
+							
+							
+						</tr>
+					</tbody>
+				</table> 
+            </div>
+        </t>
+		</t>
+    </t>
+
+</template>
+</data>
+</openerp>

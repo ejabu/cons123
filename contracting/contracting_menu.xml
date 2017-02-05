@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+      <menuitem id="contracting_root_menu" name="Contracting" sequence="39"/>
+
+             <menuitem id="contracting_main_menu" name="Contracting" parent="contracting_root_menu" sequence="1" />
+                  <menuitem id="contracting_prjt_menu" name="Tender" parent="contracting_main_menu"  sequence="1" action="contracting_enquiry_action"/>
+                <menuitem id="contracting_est_menu" name="Estimation" parent="contracting_main_menu" sequence="2" action="contracting_estimation_action"/>
+
+<!--                  <menuitem id="contracting_prop_menu" name="Tender" parent="contracting_main_menu" sequence="3" action="contracting_enquiry_kanban_action"/>-->
+<!--                  <menuitem id="contracting_unit_menu" name="Contract" parent="contracting_main_menu" action="account_analytic_analysis.action_account_analytic_overdue_all" sequence="4"/>-->
+<!--                -->
+
+ <menuitem id="budget_main_menu" name="Budgeting" parent="contracting_root_menu" sequence="2"/>
+        <menuitem id="alloc_budget_menu" name="Budget" parent="budget_main_menu" action="contracting_budget_action" sequence="1"/>
+
+<!--        <menuitem id="acc_budget_menu" name="Accounts" parent="budget_main_menu" action="account_analytic_analysis.action_account_analytic_overdue_all" sequence="2"/>-->
+
+<!--        <menuitem id="boq_budget_menu" name="BOQ" parent="budget_main_menu" action="action_contracting_budget_line_bom_view" sequence="3"/>-->
+
+<menuitem id="sight_request_main_menu" name="Sight Request" parent="contracting_root_menu" sequence="3" />
+    <menuitem id="material_request_main_menu" name="Material" parent="sight_request_main_menu" action="sight_request_material_action" sequence="1" />
+    <menuitem id="labour_request_main_menu" name="Labour" parent="sight_request_main_menu" action="sight_request_labour_action" sequence="2" />
+    <menuitem id="asset_request_main_menu" name="Asset" parent="sight_request_main_menu" action="sight_request_asset_action" sequence="3" />
+
+
+<menuitem id="jobcosting_main_menu" name="Job Costing" parent="contracting_root_menu" sequence="4" />
+    <menuitem id="approval_main_menu" name="Documentaion" parent="jobcosting_main_menu" sequence="1" action="contracting_estimation_action"/>
+<!--    <menuitem id="wip_main_menu" name="WIP" parent="jobcosting_main_menu" sequence="2" action="action_contracting_view_analytic_line_wip"/>-->
+
+<!--    <menuitem id="cont_rpt_main_menu" name="Reports" parent="jobcosting_main_menu" sequence="4" action="action_contracting_view_analytic_line"/>-->
+
+
+
+        <menuitem id="sub_budget_menu" name="Sub Contract" parent="jobcosting_main_menu" action="account.action_invoice_tree2" sequence="4"/>
+
+                <menuitem id="hr_budget_labour_menu" name="Labour" parent="jobcosting_main_menu"  sequence="5"/>
+
+
+
+         <menuitem id="hr_budget_menu" name="Timesheet" parent="hr_budget_labour_menu" action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" sequence="5"/>
+
+              <menuitem name="Posting" id="menu_labour_cost" parent="hr_budget_labour_menu"
+            action="action_labour_cost" sequence="17"/>
+
+
+       <menuitem name="Asset" id="main_menu_contract_asset" parent="jobcosting_main_menu" sequence="19"/>
+
+
+           <menuitem name="Timesheet" id="menu_asset_timesheet" parent="main_menu_contract_asset" action="act_asset_timesheet" sequence="5"/>
+
+
+
+            <menuitem name="Posting" id="menu_asset_timesheet_inv" parent="main_menu_contract_asset" action="action_asset_timesheet_inv_wizard"  sequence="7"/>
+
+
+        <menuitem name="Job Closing" id="menu_wip_process" parent="jobcosting_main_menu"  sequence="21"/>
+
+              <menuitem id="cont_inv_main_menu" name="Invoicing" parent="menu_wip_process" sequence="1" action="account.action_invoice_tree1"/>
+
+                <menuitem id="cont_inv_main_menu_closing" name="WIP Closing" parent="menu_wip_process" sequence="1" action="action_wip_process"/>
+
+
+<menuitem id="contracting_reporting_main_menu" name="Reporting" parent="contracting_root_menu" sequence="35" />
+    <menuitem id="report_budget_vs_actual" name="Budget Analaysis" parent="contracting_reporting_main_menu" sequence="1"  action="action_report_budget_actual_graph"/>
+
+    <menuitem id="report_wip_analysis" name="WIP Analysis" parent="contracting_reporting_main_menu" sequence="2"  action="action_wip_process_graph"/>
+
+    <menuitem id="report_material_analysis" name="Material Analaysis" parent="contracting_reporting_main_menu" sequence="3"  action="action_report_material_analysis_graph"/>
+
+    <menuitem id="report_manpower_analysis" name="Man Power Analaysis" parent="contracting_reporting_main_menu" sequence="4"  action="action_man_power_graph"/>
+
+    <menuitem id="report_contract_asset_analysis" name="Asset Analaysis" parent="contracting_reporting_main_menu" sequence="5"  action="action_asset_timesheet_graph"/>
+
+
+
+<menuitem id="contracting_config_main_menu" name="Configuration" parent="contracting_root_menu" sequence="40" />
+    <menuitem id="approval_main_menu" name="Attachment Type" parent="contracting_config_main_menu" sequence="1" action="contracting_attachment_type_action"/>
+    <menuitem id="contracting_enquiry_stage_menu" name="Stages" parent="contracting_config_main_menu" sequence="1" action="contracting_enquiry_stage_action"/>
+    <menuitem id="job_type_menu" name="Job Type" parent="contracting_config_main_menu" sequence="3" action="contracting_job_type_action"/>
+    <menuitem id="cost_code_menu" name="Cost Code" parent="contracting_config_main_menu" sequence="2" action="cost_code_action"/>
+
+
+    </data>
+</openerp>
