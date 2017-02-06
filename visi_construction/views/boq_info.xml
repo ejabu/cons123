@@ -19,13 +19,13 @@
                 <tree >
                     <field name="project"/>
                     <field name="revision"/>
-                    <field name="material_cost"/>
-                    <field name="subcontract_cost"/>
-                    <field name="labor_cost"/>
-                    <field name="equipment_cost"/>
-                    <field name="wk_package_cost"/>
+                    <field name="material_cost" readonly='1'/>
+                    <field name="subcontract_cost" readonly='1'/>
+                    <field name="labor_cost" readonly='1'/>
+                    <field name="equipment_cost" readonly='1'/>
+                    <field name="wk_package_cost" readonly='1'/>
                     <field name="markup_cost"/>
-                    <field name="estimated_cost"/>
+                    <field name="estimated_cost" readonly='1'/>
                 </tree>
             </field>
         </record>

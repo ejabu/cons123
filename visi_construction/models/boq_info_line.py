@@ -49,14 +49,12 @@ class boq_info_line(models.Model):
                 self.is_product = True
             elif chosen_object == 'product.template':
                 self.is_subcontract = True
-                self.is_product = True
+                # self.is_product = True
             elif chosen_object == 'work.package':
                 self.is_work_package = True
             else :
                 pass
-    #     #
-    #     # if self.field1 < self.field2:
-    #     #     self.field3 = True
+
     @api.model
     def _reference_models(self):
         selection = [('account.asset.asset', 'Equipment'),

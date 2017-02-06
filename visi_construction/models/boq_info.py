@@ -25,3 +25,38 @@ class boq_info(models.Model):
     def _compute_display_name(self):
         names = self.project.name
         self.display_name = names
+
+    @api.one
+    def write(self, vals):
+        vals['material_cost']=9999
+        res = super(boq_info, self).write(vals)
+        if 'line_ids' in vals:
+            #only if line_ids has changed
+            new_vals={}
+            material_cost = 0.0
+            subcontract_cost = 0.0
+            labor_cost = 0.0
+            equipment_cost = 0.0
+            wk_package_cost = 0.0
+            for line in self.line_ids:
+                if line.is_product == True:
+                    material_cost += line.total
+                elif line.is_subcontract == True:
+                    subcontract_cost += line.total
+                elif line.is_employee == True:
+                    labor_cost += line.total
+                elif line.is_asset == True:
+                    equipment_cost += line.total
+                elif line.is_work_package == True:
+                    wk_package_cost += line.total
+
+            estimated_cost = material_cost + subcontract_cost + labor_cost + equipment_cost + wk_package_cost
+            new_vals['material_cost']=material_cost
+            new_vals['subcontract_cost']=subcontract_cost
+            new_vals['labor_cost']=labor_cost
+            new_vals['equipment_cost']=equipment_cost
+            new_vals['wk_package_cost']=wk_package_cost
+            new_vals['estimated_cost']=estimated_cost
+            res = super(boq_info, self).write(new_vals)
+            # import ipdb; ipdb.set_trace()
+        return res
