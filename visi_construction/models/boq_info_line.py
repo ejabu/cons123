@@ -12,7 +12,7 @@ class boq_info_line(models.Model):
     boq_id = fields.Many2one('boq.info', 'Related Boq')
     # ref = fields.Integer(string='Key')
     ref = fields.Reference(selection='_reference_models', string="Key")
-    type = fields.Integer(string='Type')
+    type = fields.Char(string='Type')
     desc = fields.Char(string='Desc')
     unit = fields.Char(string='Unit')
     quantity = fields.Float(string='Qty', required=True)
@@ -29,6 +29,10 @@ class boq_info_line(models.Model):
     #     import ipdb; ipdb.set_trace()
     #     return
 
+    @api.onchange('quantity','unit_rate')
+    # @api.depends("ref")
+    def calculate_total(self):
+        self.total = self.quantity * self.unit_rate
 
     @api.onchange('ref')
     # @api.depends("ref")
@@ -43,15 +47,43 @@ class boq_info_line(models.Model):
             # import ipdb; ipdb.set_trace()
             if chosen_object == 'account.asset.asset':
                 self.is_asset = True
+                self.type = 'Asset'
+                self.desc = self.ref.name
+                self.unit = ""
+                self.quantity = 1
+                self.unit_rate = 0
+                self.total = 0
             elif chosen_object == 'hr.employee':
                 self.is_employee = True
+                self.type = 'Labor'
+                self.desc = self.ref.name
+                self.unit = ""
+                self.quantity = 1
+                self.total = 0
             elif chosen_object == 'product.product':
                 self.is_product = True
+                self.type = 'Material'
+                self.desc = self.ref.name
+                self.unit = self.ref.uom_id.name
+                self.quantity = 1
+                self.unit_rate = self.ref.standard_price
+                self.total = 0
             elif chosen_object == 'product.template':
                 self.is_subcontract = True
-                # self.is_product = True
+                self.type = 'Subcontract'
+                self.desc = self.ref.name
+                self.unit = self.ref.uom_id.name
+                self.quantity = 1
+                self.unit_rate = self.ref.standard_price
+                self.total = 0
             elif chosen_object == 'work.package':
                 self.is_work_package = True
+                self.type = 'Work Package'
+                self.desc = self.ref.name
+                self.unit = ""
+                self.quantity = 1
+                self.unit_rate = 0
+                self.total = 0
             else :
                 pass
 
