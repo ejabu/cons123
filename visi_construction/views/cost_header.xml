@@ -9,7 +9,8 @@
 
         </record>
 
-        <menuitem id="sub_cost_header" name="Cost Header" parent="project.menu_project_config" action="cost_header_action" sequence="10"/>
+        <menuitem id="menu_cost_header" name="Cost Header" parent="project.menu_project_config" sequence="60"/>
+        <menuitem id="sub_cost_header" name="Cost Header" parent="menu_cost_header" action="cost_header_action" sequence="50"/>
 
         <!-- Tree view for the menuitem -->
         <record id="cost_header_tree" model="ir.ui.view">
