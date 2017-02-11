@@ -10,6 +10,7 @@
         'views/boq_info.xml',
         'views/cost_code.xml',
         'views/cost_header.xml',
+        'views/work_package.xml',
     ],
     'demo':[
             #files containing demo data

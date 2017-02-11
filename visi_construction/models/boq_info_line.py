@@ -82,8 +82,7 @@ class boq_info_line(models.Model):
                 self.desc = self.ref.name
                 self.unit = ""
                 self.quantity = 1
-                self.unit_rate = 0
-                self.total = 0
+                self.unit_rate = self.ref.work_package_cost
             else :
                 pass
 

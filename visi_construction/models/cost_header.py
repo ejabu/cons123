@@ -12,6 +12,7 @@ class cost_header(models.Model):
     name = fields.Char(string='Cost Header Name', required=True)
     cost_header_cost = fields.Float(string='Cost of Header', compute='_compute_cost', store=True)
     cost_code = fields.Many2many('cost.code', 'cost_code_to_header_rel', 'header_id', 'code_id', string="Cost Code")
+    work_package = fields.Many2many('work.package', 'cost_header_to_work_package_rel', 'header_id', 'package_id', string="Work Package")
 
     _defaults = {
         'name'  : 'Cost Header'
