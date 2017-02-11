@@ -8,6 +8,7 @@
     'data': [
         # 'views/project_project.xml',
         'views/boq_info.xml',
+        'views/cost_code.xml',
     ],
     'demo':[
             #files containing demo data
