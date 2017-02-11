@@ -27,17 +27,36 @@
         <record id="cost_code_form" model="ir.ui.view">
             <field name="name">cost.code.form</field>
             <field name="model">cost.code</field>
+            <field name="inherit_id" ref="contracting.cost_code_form"/>
             <field name="arch" type="xml">
-                <form string="Static resource demo">
-                    <sheet>
-                        <group colspan="4" col="4">
-                            <field name="code"/>
-                            <field name="name"/>
-                            <field name="unit_price" />
-                            <field name="quantity" />
-                        </group>
-                    </sheet>
-                </form>
+                <xpath expr="/form" position="replace">
+					<sheet>
+						<group>
+							<group>
+								<label for="code"/>
+								<h2>
+									<field name="code"/>
+								</h2>
+								<label for="name"/>
+								<h2>
+									<field name="name"/>
+								</h2>
+								<label for="unit_price"/>
+								<h2>
+									<field name="unit_price"/>
+								</h2>
+								<label for="quantity"/>
+								<h2>
+									<field name="quantity"/>
+								</h2>
+							</group>
+
+						</group>
+						<div class="oe_clear"/>
+						<field name="description" class="oe_inline" placeholder="Description....."/>
+					</sheet>
+				</xpath>
+
             </field>
         </record>
 

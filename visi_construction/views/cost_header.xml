@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="cost_header_action">
+            <field name="name">Cost Header</field>
+            <field name="res_model">cost.header</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+        <menuitem id="sub_cost_header" name="Cost Header" parent="project.menu_project_config" action="cost_header_action" sequence="10"/>
+
+        <!-- Tree view for the menuitem -->
+        <record id="cost_header_tree" model="ir.ui.view">
+            <field name="name">cost.header.tree</field>
+            <field name="model">cost.header</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="cost_header_number"/>
+                    <field name="name"/>
+                    <field name="cost_header_cost"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view for the menuitem -->
+        <record id="cost_header_form" model="ir.ui.view">
+            <field name="name">cost.header.form</field>
+            <field name="model">cost.header</field>
+            <field name="arch" type="xml">
+                <form string="Static resource demo">
+                    <sheet>
+						<group>
+							<field name="cost_header_number" align="left"/>
+							<field name="name"/>
+							<field name="cost_header_cost"/>
+							<separator string="Cost Code"/>
+							<field name="cost_code" nolabel="1" string="Cost Code">
+
+							</field>
+						</group>
+					</sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

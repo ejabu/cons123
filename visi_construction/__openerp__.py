@@ -9,6 +9,7 @@
         # 'views/project_project.xml',
         'views/boq_info.xml',
         'views/cost_code.xml',
+        'views/cost_header.xml',
     ],
     'demo':[
             #files containing demo data
