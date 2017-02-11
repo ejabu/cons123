@@ -9,8 +9,8 @@
 
         </record>
 
-        <menuitem id="menu_work_package" name="Work Package" parent="project.menu_project_config" sequence="60"/>
-        <menuitem id="sub_work_package" name="Work Package" parent="menu_work_package" action="work_package_action" sequence="40"/>
+        <menuitem id="menu_work_package" name="Work Package" parent="project.menu_project_config" sequence="40"/>
+        <menuitem id="sub_work_package" name="Work Package" parent="menu_work_package" action="work_package_action"/>
 
         <!-- Tree view for the menuitem -->
         <record id="work_package_tree" model="ir.ui.view">
