@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="vendor_info_search" model="ir.ui.view">
+            <field name="name">res.partner.searh.vendor.info</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="kesesuaian" string="Kesesuaian"/>
+                    <field name="ketepatan" string="Ketepatan"/>
+                    <field name="komunikasi" string="Komunikasi"/>
+                    <field name="terms_of_payment" string="Term of Payment"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Kesesuaian" domain="[]" context="{'group_by':'kesesuaian'}"/>
+                        <filter string="Ketepatan" domain="[]" context="{'group_by':'ketepatan'}"/>
+                        <filter string="Komunikasi" domain="[]" context="{'group_by':'komunikasi'}"/>
+                        <filter string="Term of Payment" domain="[]" context="{'group_by':'terms_of_payment'}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
         <record id="vendor_info" model="ir.ui.view">
             <field name="name">res.partner.form.vendor.info</field>
             <field name="model">res.partner</field>
