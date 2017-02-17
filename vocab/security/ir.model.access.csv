@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_vocab_task_student,vocab.task,model_vocab_task,vocab.vc_student,1,1,1,1
-access_vocab_week_student,vocab.week,model_vocab_week,vocab.vc_student,1,1,1,1
-access_vocab_mean_student,vocab.mean,model_vocab_mean,vocab.vc_student,1,0,0,0
-access_vocab_mean_teacher,vocab.mean,model_vocab_mean,vocab.vc_teacher,1,1,1,1
-access_vocab_quiz_student,vocab.quiz,model_vocab_quiz,vocab.vc_student,1,1,1,1
-access_vocab_quiz_line_student,vocab.quiz.line,model_vocab_quiz_line,vocab.vc_student,1,1,1,1
-access_vocab_mahad_student,mahad.student,model_mahad_student,vocab.vc_student,1,1,1,1
