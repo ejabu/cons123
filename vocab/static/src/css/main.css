@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'English';
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Arabic';
+    src: url('../fonts/UthmanicHafs1 Ver09_1.ttf');
+}
+
+.question_center {
+    font-size: 50px;
+    text-align: center;
+}
+
+.arabic{
+    font-family: 'Arabic';
+}
+.english{
+    font-family: 'English';
+}
+
+
+.openerp .oe_highlight {
+    color: white;
+    background: #DC5F59;
+}
+.quiz_button {
+    margin: 2px;
+    font-size:18px!important;
+    border: 0px;
+    background-color: transparent!important;
+    background-image: none!important;
+    border: 0px!important;
+    /*min-width: 220px;*/
+    width: 100% !important;
+    text-align: left;
+    min-height: 40px;
+}
+
+.quiz_button:hover {
+    border: 1px solid #62A2E4!important;
+    border: 2px solid #D9ECFF!important;
+    box-shadow: none!important;
+
+}
+
+.container_button {
+    width: 80%;
+}
+.indexes {
+    width: 20%;
+    display: inline-block;
+}
+.options {
+    width: 70%;
+    display: inline-block;
+
+}
+.quiz_sheet_width{
+    min-width: 300px!important;
+}
+
+.oe_share{
+    display: none!important;
+}
+
+.oe_followers{
+    display: none!important;
+
+}
+
+.oe_compose_post{
+    display: none!important;
+
+}
+
+.oe_sep_word{
+    display: none!important;
+
+}
+
+.oe_compose_log{
+    display: none!important;
+
+}
+
+.oe_msg_vote{
+    display: none!important;
+
+}
+
+.oe_msg_icons {
+    display: none!important;
+}

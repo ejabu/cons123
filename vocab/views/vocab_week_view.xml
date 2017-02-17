@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="vocab_week_action">
+            <field name="name">Vocab Form</field>
+            <field name="res_model">vocab.week</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Add Vocab to remember by weekly
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="sub_vocab_week" name="Weekly Form" parent="vole_teacher" action="vocab_week_action" sequence="10"/>
+        <!-- Tree view for the menuitem -->
+        <record id="vocab_week_tree" model="ir.ui.view">
+            <field name="name">vocab.week.tree</field>
+            <field name="model">vocab.week</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="name"/>
+                    <field name="total_vocab"/>
+                    <field name="published_date"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view for the menuitem -->
+        <record id="vocab_week_form" model="ir.ui.view">
+            <field name="name">vocab.week.form</field>
+            <field name="model">vocab.week</field>
+            <field name="arch" type="xml">
+                <form string="Static resource demo">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="published_date"/>
+                            </group>
+                            <group>
+                                <field name="total_vocab"/>
+                            </group>
+                        </group>
+
+                        <field name="vocab_ids">
+                            <tree string="Vocabularies" editable="bottom">
+                                <field name="english"/>
+                                <field name="arabic"/>
+                                <field name="day"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

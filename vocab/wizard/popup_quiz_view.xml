@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="popup_quiz_form" model="ir.ui.view">
+            <field name="name">popup.quiz.form</field>
+            <field name="model">popup.quiz</field>
+            <field name="arch" type="xml">
+                <form string="Static resource demo">
+                    <sheet class="quiz_sheet_width">
+                        <group>
+                            <group>
+                                <field name="question_index" invisible='1'></field>
+                            </group>
+                        </group>
+                        <group>
+                            <div class="question_center">SOALSOAL</div>
+                        </group>
+                        <group>
+
+                            <div class="container_button"><div class="indexes">a.)</div> <div class="options"><button string="Option A" name="answer_quiz" class="quiz_button" type="object"/></div></div>
+                            <div class="container_button"><div class="indexes">c.)</div> <div class="options"><button string="Option C" name="answer_quiz" class="quiz_button" type="object"/></div></div>
+                            <div class="container_button"><div class="indexes">b.)</div> <div class="options"><button string="Option B" name="answer_quiz" class="quiz_button" type="object"/></div></div>
+                            <div class="container_button"><div class="indexes">d.)</div> <div class="options"><button string="Option D" name="answer_quiz" class="quiz_button" type="object"/></div></div>
+                        </group>
+                    </sheet>
+                    
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

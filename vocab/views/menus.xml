@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_vole_menu" name="Learning"/>
+
+        <menuitem id="vole_library" name="Library"
+            parent="main_vole_menu" sequence="10"/>
+
+        <menuitem id="vole_teacher" name="Teacher"
+                  groups="vc_teacher"
+                  parent="main_vole_menu" sequence="20"/>
+
+        <menuitem id="vole_master_data" name="Master Data"
+                  groups="vc_teacher"
+                  parent="main_vole_menu" sequence="30"/>
+
+        <menuitem id="vole_student" name="Student"
+                  parent="main_vole_menu" sequence="40"/>
+
+
+    </data>
+</openerp>

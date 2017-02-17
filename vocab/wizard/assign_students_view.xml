@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--  Consume, scrap move -->
+
+        <record id="assign_student_wizard_form" model="ir.ui.view">
+            <field name="name">Assign Students</field>
+            <field name="model">assign.students.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Define Grade to Assign">
+                        <field name="era_id" string="Grade"/>
+                        <!-- <label for="product_qty"/>
+                        <div>
+                            <field name="product_qty" class="oe_inline"/>
+                            <field name="product_uom" class="oe_inline" readonly="1" groups="product.group_uom"/>
+                        </div>
+                        <field name="restrict_lot_id" domain="[('product_id','=',product_id)]" groups="stock.group_production_lot"
+                            context="{'default_product_id': product_id}"/>
+                        <field name="location_id" groups="stock.group_locations"/> -->
+                    </group>
+                    <footer>
+                        <button name="assign_grade" string="Assign Grade" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
