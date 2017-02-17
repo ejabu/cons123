@@ -15,7 +15,7 @@
 - [x] Copy Pragma Module
 - [x] Boq Info, automatic calculation as soon after creation
 - [ ] Sight Request > Material > Cost Code : Code + Name diubah menjadi Code saja
-- [ ] Pada Vendor, tambahkan 1 Tab untuk Rating Vendor, dan buat agar searchable
+- [x] Pada Vendor, tambahkan 1 Tab untuk Rating Vendor, dan buat agar searchable
 - [ ] Rec vs Billed pada PO Line, ditambahkan Unit of Measure
 
 
