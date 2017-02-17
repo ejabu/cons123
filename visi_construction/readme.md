@@ -1,5 +1,5 @@
 <!-- TOC START min:1 max:3 link:true update:true -->
-  - [Table of Contents](#table-of-contents)
+  - [To Do](#to-do)
   - [Created Views](#created-views)
   - [Functionality](#functionality)
     - [Boq info](#boq-info)
@@ -8,6 +8,15 @@
     - [Work Package](#work-package)
 
 <!-- TOC END -->
+
+
+## To Do
+
+- [x] Copy Pragma Module
+- [x] Boq Info, automatic calculation as soon after creation
+- [ ] Sight Request > Material > Cost Code : Code + Name diubah menjadi Code saja
+- [ ] Pada Vendor, tambahkan 1 Tab untuk Rating Vendor, dan buat agar searchable
+- [ ] Rec vs Billed pada PO Line, ditambahkan Unit of Measure
 
 
 ## Created Views
@@ -35,6 +44,7 @@
 - [ ] report_purchase_order (qweb)
 - [x] work.package.form (form)
 - [x] work.package.tree (tree)
+
 
 ## Functionality
 
