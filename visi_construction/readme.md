@@ -12,12 +12,14 @@
 
 ## To Do
 
-- [x] Copy Pragma Module
+- [x] Copy Module
 - [x] Boq Info, automatic calculation as soon after creation
-- [ ] Sight Request > Material > Cost Code : Code + Name diubah menjadi Code saja
+- [x] Sight Request > Material > Cost Code : Code + Name diubah menjadi Code saja
 - [x] Pada Vendor, tambahkan 1 Tab untuk Rating Vendor, dan buat agar searchable
-- [ ] Rec vs Billed pada PO Line, ditambahkan Unit of Measure
+- [x] Rec vs Billed pada PO Line, ditambahkan Unit of Measure
+- [ ] Sight Request (RO) menjadi dasar bagi PR
 
+> Melalui Purchase > Configurations > Settings  > Unit of Measures di set pada pilihan kedua
 
 ## Created Views
 - [x] INHERIT cost.code.form (form)
