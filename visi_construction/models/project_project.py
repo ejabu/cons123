@@ -3,13 +3,16 @@
 from openerp import api
 from openerp import models, fields
 from openerp.osv import fields as Fields
+import openerp.addons.decimal_precision as dp
+
+
 
 class project_project(models.Model):
 
     _inherit= "project.project"
 
-    markup_amt=fields.Char(string='Markup cost', required=True)
-    estimated_cost=fields.Char(string='Estimated cost')
+    markup_amt=fields.Char(string='Markup cost', required=True, digits_compute=dp.get_precision('Product Price'))
+    estimated_cost=fields.Char(string='Estimated cost', digits_compute=dp.get_precision('Product Price'))
     planned_hours=fields.Char(string='planned_hours')
     effective_hours=fields.Char(string='effective_hours')
     total_hours=fields.Char(string='total_hours')

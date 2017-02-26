@@ -68,11 +68,14 @@ class boq_info(models.Model):
             new_vals['wk_package_cost']=wk_package_cost
             new_vals['estimated_cost_before_markup']=estimated_cost_before_markup
             new_vals['estimated_cost']=estimated_cost
+            self.project.write({'markup_amt': markup_cost, 'estimated_cost': estimated_cost  })
             res = super(boq_info, self).write(new_vals)
         elif 'markup_cost' in vals:
             new_vals={}
             estimated_cost = self.estimated_cost_before_markup * ((vals['markup_cost']+100.00)/100.00)
             new_vals['estimated_cost']=estimated_cost
+            self.project.write({'markup_amt': vals['markup_cost'], 'estimated_cost': estimated_cost  })
+
             res = super(boq_info, self).write(new_vals)
         return res
 
@@ -116,6 +119,8 @@ class boq_info(models.Model):
             new_vals['wk_package_cost']=wk_package_cost
             new_vals['estimated_cost_before_markup']=estimated_cost_before_markup
             new_vals['estimated_cost']=estimated_cost
+            import ipdb; ipdb.set_trace()
+            self.env['project.project'].browse(vals['project']).write({'markup_amt': markup_cost, 'estimated_cost': estimated_cost  })
             res_vals = merge_two_dicts(vals, new_vals)
             res = super(boq_info, self).create(res_vals)
         return res
