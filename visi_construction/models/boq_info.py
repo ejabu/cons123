@@ -18,9 +18,14 @@ class boq_info(models.Model):
     estimated_cost_before_markup = fields.Float(string='Estimated Cost')
     markup_cost = fields.Float(string='Markup Cost(in %)')
     revision = fields.Integer(string='Revision')
+    is_active = fields.Boolean(string='Active')
 
-    line_ids = fields.One2many('boq.info.line', 'boq_id', 'Boq Line')
+    line_ids = fields.One2many('boq.info.line', 'boq_id', 'Boq Line', copy=True)
     display_name = fields.Char(string='Name', compute='_compute_display_name')
+
+    _defaults = {
+        'is_active'  : True,
+    }
 
     @api.depends('project.name')
     def _compute_display_name(self):
@@ -113,5 +118,27 @@ class boq_info(models.Model):
             new_vals['estimated_cost']=estimated_cost
             res_vals = merge_two_dicts(vals, new_vals)
             res = super(boq_info, self).create(res_vals)
-
         return res
+
+
+    @api.multi
+    def create_revision(self):
+        data_copy = super(boq_info, self).copy_data()[0]
+        data_copy.update({
+         'revision': data_copy['revision']+1,
+        })
+        self.write({'is_active': False})
+
+        res =self.create(data_copy)
+        course_form = self.env.ref('visi_construction.boq_info_form', False)
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'boq.info',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_id': res.id,
+            'target': 'current',
+            'nodestroy': True,
+            'views': [(course_form.id, 'form')],
+            'view_id': 'course_form.id',
+        }
