@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.actions.act_window" id="boq_info_action">
-            <field name="name">Boq Info</field>
-            <field name="res_model">boq.info</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
 
-        </record>
 
         <menuitem id="sub_boq_info" name="Bill of Quantity" parent="project.menu_project_management" action="boq_info_action" sequence="10"/>
+
+
+        <record id="boq_info_search" model="ir.ui.view">
+            <field name="name">boq.info.search</field>
+            <field name="model">boq.info</field>
+            <field name="arch" type="xml">
+                <search string="Boq">
+                    <filter name="active" string="Active" domain="[('is_active','=',True)]" />
+                    <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]" />
+                    <group expand="0" string="Group By">
+                        <filter string="Status" domain="[]" context="{'group_by':'project'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
 
         <!-- Tree view for the menuitem -->
         <record id="boq_info_tree" model="ir.ui.view">
@@ -18,6 +28,7 @@
             <field name="arch" type="xml">
                 <tree >
                     <field name="project"/>
+                    <field name="is_active" invisible="1"/>
                     <field name="revision"/>
                     <field name="material_cost" readonly='1'/>
                     <field name="subcontract_cost" readonly='1'/>
@@ -74,6 +85,20 @@
                         </field>
                 </form>
             </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="boq_info_action">
+            <field name="name">Boq Info</field>
+            <field name="res_model">boq.info</field>
+            <field name="view_type">form</field>
+            <!-- <field name="domain">[('is_active','=',True)]</field> -->
+            <!-- <field name="context">{'search_default_is_active': 1}</field> -->
+            <field name="search_view_id" ref="boq_info_search"/>
+            <field name="context">{'search_default_active':1}</field>
+
+            <field name="view_mode">tree,form</field>
+        <!-- &lt;&gt; -->
         </record>
 
     </data>
