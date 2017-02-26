@@ -11,6 +11,8 @@
         'views/cost_code.xml',
         'views/cost_header.xml',
         'views/work_package.xml',
+        'views/project_project.xml',
+        'views/purchase_order.xml',
     ],
     'demo':[
             #files containing demo data

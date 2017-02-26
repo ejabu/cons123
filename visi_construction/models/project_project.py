@@ -8,16 +8,38 @@ class project_project(models.Model):
 
     _inherit= "project.project"
 
-    markup_amt=fields.Char(string='markup_amt')
-    estimated_cost=fields.Char(string='estimated_cost')
+    markup_amt=fields.Char(string='Markup cost', required=True)
+    estimated_cost=fields.Char(string='Estimated cost')
     planned_hours=fields.Char(string='planned_hours')
     effective_hours=fields.Char(string='effective_hours')
     total_hours=fields.Char(string='total_hours')
-    sale_ids=fields.Char(string='sale_ids')
-    purchase_ids=fields.Char(string='purchase_ids')
-    project_task_ids=fields.Char(string='project_task_ids')
-    product_used_ids=fields.Char(string='product_used_ids')
-    type_ids=fields.Char(string='type_ids')
-    boq_ids=fields.Char(string='boq_ids')
-    product_used_ids=fields.Char(string='product_used_ids')
-    
+
+    sale_ids = fields.One2many('sale.order', 'project_id', 'Sale Order', readonly=True)
+    purchase_ids = fields.One2many('sale.order', 'project_id', 'Purchase Order', readonly=True)
+    task_ids = fields.One2many('project.task', 'project_id', 'Tasks', readonly=True)
+    boq_ids = fields.One2many('boq.info', 'project', 'Boq Info', readonly=True)
+    product_used_ids = fields.One2many('project.inventory.info', 'project_id', 'Product Used', readonly=True)
+
+
+class sale_order_visi(models.Model):
+    _inherit= "sale.order"
+
+    project_id = fields.Many2one('project.project', 'Project')
+
+class purchase_order_visi(models.Model):
+    _inherit= "purchase.order"
+
+    project_id = fields.Many2one('project.project', 'Project')
+
+
+class project_inventory_info(models.Model):
+
+    _name= "project.inventory.info"
+
+    project_id = fields.Many2one('project.project', 'Project')
+
+    inventory_id=fields.Char(string='Inventory')
+    product_id = fields.Many2one('product.product', 'Product')
+    estimated_qty=fields.Char(string='Estimated Qty')
+    usage_qty=fields.Char(string='Usage Qty')
+    consumed_qty=fields.Char(string='Consumed Qty')
