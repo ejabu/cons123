@@ -15,6 +15,7 @@ class boq_info(models.Model):
     equipment_cost = fields.Float(string='Equipment Cost')
     wk_package_cost = fields.Float(string='Work Package Cost')
     estimated_cost = fields.Float(string='Estimated Cost')
+    estimated_cost_before_markup = fields.Float(string='Estimated Cost')
     markup_cost = fields.Float(string='Markup Cost(in %)')
     revision = fields.Integer(string='Revision')
 
@@ -28,10 +29,13 @@ class boq_info(models.Model):
 
     @api.one
     def write(self, vals):
-        # vals['material_cost']=9999
         res = super(boq_info, self).write(vals)
         if 'line_ids' in vals:
             #only if line_ids has changed
+            if 'markup_cost' in vals:
+                markup_cost = vals['markup_cost']
+            else:
+                markup_cost = self.markup_cost
             new_vals={}
             material_cost = 0.0
             subcontract_cost = 0.0
@@ -50,15 +54,21 @@ class boq_info(models.Model):
                 elif line.is_work_package == True:
                     wk_package_cost += line.total
 
-            estimated_cost = material_cost + subcontract_cost + labor_cost + equipment_cost + wk_package_cost
+            estimated_cost_before_markup = material_cost + subcontract_cost + labor_cost + equipment_cost + wk_package_cost
+            estimated_cost = estimated_cost_before_markup * ((markup_cost+100.00)/100.00)
             new_vals['material_cost']=material_cost
             new_vals['subcontract_cost']=subcontract_cost
             new_vals['labor_cost']=labor_cost
             new_vals['equipment_cost']=equipment_cost
             new_vals['wk_package_cost']=wk_package_cost
+            new_vals['estimated_cost_before_markup']=estimated_cost_before_markup
             new_vals['estimated_cost']=estimated_cost
             res = super(boq_info, self).write(new_vals)
-            # import ipdb; ipdb.set_trace()
+        elif 'markup_cost' in vals:
+            new_vals={}
+            estimated_cost = self.estimated_cost_before_markup * ((vals['markup_cost']+100.00)/100.00)
+            new_vals['estimated_cost']=estimated_cost
+            res = super(boq_info, self).write(new_vals)
         return res
 
     @api.model
@@ -69,6 +79,10 @@ class boq_info(models.Model):
             z.update(y)
             return z
         if 'line_ids' in vals:
+            #only if line_ids has changed
+            #markup_cost always in vals
+            markup_cost = vals['markup_cost']
+
             new_vals={}
             material_cost = 0.0
             subcontract_cost = 0.0
@@ -88,13 +102,16 @@ class boq_info(models.Model):
                 elif line['is_work_package'] == True:
                     wk_package_cost += line['total']
 
-            estimated_cost = material_cost + subcontract_cost + labor_cost + equipment_cost + wk_package_cost
+            estimated_cost_before_markup = material_cost + subcontract_cost + labor_cost + equipment_cost + wk_package_cost
+            estimated_cost = estimated_cost_before_markup * ((markup_cost+100.00)/100.00)
             new_vals['material_cost']=material_cost
             new_vals['subcontract_cost']=subcontract_cost
             new_vals['labor_cost']=labor_cost
             new_vals['equipment_cost']=equipment_cost
             new_vals['wk_package_cost']=wk_package_cost
+            new_vals['estimated_cost_before_markup']=estimated_cost_before_markup
             new_vals['estimated_cost']=estimated_cost
             res_vals = merge_two_dicts(vals, new_vals)
             res = super(boq_info, self).create(res_vals)
+
         return res
