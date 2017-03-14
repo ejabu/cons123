@@ -18,7 +18,7 @@ class project_project(models.Model):
     total_hours=fields.Char(string='total_hours')
 
     sale_ids = fields.One2many('sale.order', 'project_id', 'Sale Order', readonly=True)
-    purchase_ids = fields.One2many('sale.order', 'project_id', 'Purchase Order', readonly=True)
+    purchase_ids = fields.One2many('purchase.order', 'project_id', 'Purchase Order', readonly=True)
     task_ids = fields.One2many('project.task', 'project_id', 'Tasks', readonly=True)
     boq_ids = fields.One2many('boq.info', 'project', 'Boq Info', readonly=True)
     product_used_ids = fields.One2many('project.inventory.info', 'project_id', 'Product Used', readonly=True)
